@@ -9,13 +9,12 @@ export const UserContext = createContext({
   setCurrentUser: () => null,
 });
 
-const UserProvider = ({ children }) => {
+export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const value = { currentUser, setCurrentUser };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
-      console.log(user);
       if (user) {
         createUserDocumentFromAuth(user);
       }
@@ -26,5 +25,3 @@ const UserProvider = ({ children }) => {
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
-
-export default UserProvider;
