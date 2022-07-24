@@ -1,13 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 import "./log-in-form.styles.scss";
-import { UserContext } from "../../context/user.context";
 
 const defaultFormFields = {
   email: "",
@@ -17,14 +15,14 @@ const defaultFormFields = {
 const LogInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
 
-  const { setCurrentUser } = useContext(UserContext);
-
   const { email, password } = formFields;
 
+  const resetFormFields = () => {
+    setFormFields(defaultFormFields);
+  };
+
   const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
-    setCurrentUser(user);
+    await signInWithGooglePopup();
   };
 
   const handleChange = (e) => {
@@ -36,13 +34,8 @@ const LogInForm = () => {
     e.preventDefault();
 
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-
-      setCurrentUser(user);
-      setFormFields(defaultFormFields);
+      await signInAuthUserWithEmailAndPassword(email, password);
+      resetFormFields();
     } catch (error) {
       switch (error.code) {
         case "auth/user-not-found":
@@ -50,6 +43,7 @@ const LogInForm = () => {
           break;
         case "auth/wrong-password":
           alert("Wrong password for this email");
+          break;
         default:
           console.error("log in user encountered an error", error);
           break;
