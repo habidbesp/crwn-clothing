@@ -20,14 +20,22 @@ import {
   getDocs,
 } from "firebase/firestore";
 
-// Your web app's Firebase configuration
+const {
+  REACT_APP_FIREBASE_API_KEY,
+  REACT_APP_FIREBASE_AUTH_DOMAIN,
+  REACT_APP_FIREBASE_PROJECT_ID,
+  REACT_APP_FIREBASE_STORAGE_BOCKET,
+  REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  REACT_APP_FIREBASE_APP_ID,
+} = process.env;
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAJcfeNDHHfL5BOCucZd_3UKNkDFkHtAjY",
-  authDomain: "crwn-clothing-db-db26e.firebaseapp.com",
-  projectId: "crwn-clothing-db-db26e",
-  storageBucket: "crwn-clothing-db-db26e.appspot.com",
-  messagingSenderId: "168425645588",
-  appId: "1:168425645588:web:cd1bf16e0ac28602962901",
+  apiKey: REACT_APP_FIREBASE_API_KEY,
+  authDomain: REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: REACT_APP_FIREBASE_STORAGE_BOCKET,
+  messagingSenderId: REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: REACT_APP_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
