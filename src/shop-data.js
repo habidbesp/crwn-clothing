@@ -10,7 +10,7 @@ const SHOP_DATA = [
       },
       {
         id: 2,
-        name: "Blue Beanies",
+        name: "Blue Beanie",
         imageUrl: "https://i.ibb.co/ypkgK0X/blue-beanie.png",
         price: 18,
       },
