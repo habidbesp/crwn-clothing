@@ -1,21 +1,18 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import { selectCategoriesMap } from "../../store/categories/category.selector";
+
 import ProductCard from "../../components/product-card/product-card.component";
-import { CategoriesContext } from "../../context/categories.context";
+import { capitalizeString } from "../../utils/helpers/helpers.utils";
+
 import { CategoryContainer, CategoryTitle } from "./category.styles";
 
 const Category = () => {
-  const { categoriesMap } = useContext(CategoriesContext);
   const { category } = useParams();
+  const categoriesMap = useSelector(selectCategoriesMap);
   const [products, setProducts] = useState(categoriesMap[category]);
-
-  const capitalize = () => {
-    const firstLetterUpperCase = category.split("")[0].toUpperCase();
-    const arr = category.split("");
-    arr.splice(0, 1, firstLetterUpperCase);
-    const capitaliced = arr.join("");
-    return capitaliced;
-  };
 
   useEffect(() => {
     setProducts(categoriesMap[category]);
@@ -23,7 +20,7 @@ const Category = () => {
 
   return (
     <>
-      <CategoryTitle>{capitalize()}</CategoryTitle>
+      <CategoryTitle>{capitalizeString(category)}</CategoryTitle>
       <CategoryContainer>
         {products &&
           products.map((product) => (

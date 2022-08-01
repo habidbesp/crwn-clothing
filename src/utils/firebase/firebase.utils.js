@@ -28,7 +28,9 @@ const firebaseConfig = {
   messagingSenderId: "168425645588",
   appId: "1:168425645588:web:cd1bf16e0ac28602962901",
 };
+
 // Initialize Firebase
+// eslint-disable-next-line
 const firebaseApp = initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
@@ -69,14 +71,9 @@ export const getCategoriesAndDocuments = async () => {
   try {
     const collectionRef = collection(db, "categories");
     const q = query(collectionRef);
-    const querySnapshot = await getDocs(q);
-    const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-      const { title, items } = docSnapshot.data();
-      acc[title.toLowerCase()] = items;
-      return acc;
-    }, {});
 
-    return categoryMap;
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
   } catch (error) {
     console.log("Error at getting categories", error);
   }
