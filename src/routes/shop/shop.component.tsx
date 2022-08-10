@@ -14,7 +14,6 @@ const Shop = () => {
     dispatch(fetchCategoriesStart());
     // eslint-disable-next-line
   }, []);
-
   return (
     <Routes>
       <Route index element={<CategoriesPreview />} />
