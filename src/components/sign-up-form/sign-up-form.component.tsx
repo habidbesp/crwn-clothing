@@ -7,7 +7,7 @@ import { signUpStar } from "../../store/user/user.action";
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 
-import { SignUpContainer } from "./sign-up-form.styles";
+import { SignUpContainer, SignUpButton } from "./sign-up-form.styles";
 
 const defaultFormFields = {
   displayName: "",
@@ -90,7 +90,7 @@ const SignUpForm = () => {
           name="confirmPassword"
           value={confirmPassword}
         />
-        <Button type="submit">Sign Up</Button>
+        <SignUpButton type="submit">Sign Up</SignUpButton>
       </form>
     </SignUpContainer>
   );

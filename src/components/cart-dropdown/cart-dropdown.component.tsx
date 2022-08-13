@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -10,13 +11,16 @@ import {
   CartDropdownContainer,
   CartItems,
   EmptyMessage,
-} from "./cart-dropdown.style";
+} from "./cart-dropdown.styles";
 
 const CartDropdown = () => {
   const cartItems = useSelector(selectCartItems);
   const navigate = useNavigate();
 
-  const goToCheckoutHandler = () => navigate("/checkout");
+  const goToCheckoutHandler = useCallback(() => {
+    navigate("/checkout");
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <CartDropdownContainer>

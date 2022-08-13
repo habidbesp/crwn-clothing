@@ -39,7 +39,7 @@ const Navigation = () => {
                 SIGN OUT
               </NavLink>
               <CartIcon />
-              <div>{currentUser.displayName}</div>
+              {/* <div>{currentUser.displayName}</div> */}
             </>
           ) : (
             <NavLink to="auth">SIGN IN</NavLink>
