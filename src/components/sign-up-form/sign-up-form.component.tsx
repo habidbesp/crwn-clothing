@@ -4,7 +4,6 @@ import { AuthErrorCodes, AuthError } from "firebase/auth";
 
 import { signUpStar } from "../../store/user/user.action";
 
-import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 
 import { SignUpContainer, SignUpButton } from "./sign-up-form.styles";
